@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendedora Sincera - Avaliações</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #1a1a2e;
+            color: white;
+        }
+
+        .header {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #1a1a2e;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0,102,255,0.1), rgba(0,230,118,0.1));
+            z-index: 0;
+        }
+
+        .logo {
+            max-width: 300px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInDown 1s ease;
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .header p {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .whatsapp-button {
+            background-color: #00E676;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #00C853;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,230,118,0.3);
+        }
+
+        .packages {
+            background-color: #0056b3;
+            padding: 70px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .packages::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.05), transparent);
+        }
+
+        .packages h2 {
+            margin-bottom: 50px;
+            font-size: 2.5em;
+            font-weight: 600;
+            animation: fadeInDown 1s ease;
+        }
+
+        .package-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .package-card {
+            background-color: #1a1a2e;
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 280px;
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .google-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #ff4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 28px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(255,68,68,0.3);
+        }
+
+        .package-card h3 {
+            margin: 15px 0;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .package-card .price {
+            font-size: 1.8em;
+            margin: 20px 0;
+            color: white;
+            font-weight: 600;
+        }
+
+        .package-card ul {
+            list-style: none;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .package-card ul li {
+            margin: 12px 0;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+        }
+
+        .package-card ul li::before {
+            content: '✓';
+            color: #00E676;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .faq-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 70px 20px;
+            gap: 50px;
+        }
+
+        .faq {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .faq h2 {
+            text-align: left;
+            margin-bottom: 40px;
+            font-size: 2.2em;
+            font-weight: 600;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            animation: fadeInLeft 1s ease;
+        }
+
+        .faq-question {
+            background-color: #2a2a40;
+            padding: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            position: relative;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #3a3a50;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .faq-answer {
+            background-color: #1a1a2e;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 200px;
+        }
+
+        .whatsapp-image {
+            flex: 1;
+            max-width: 400px;
+            animation: float 3s ease-in-out infinite;
+            text-align: center;
+        }
+
+        .whatsapp-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #1a1a2e;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #00E676;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .faq-section {
+                flex-direction: column;
+            }
+
+            .package-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .package-card {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header p {
+                font-size: 1.1em;
+            }
+
+            .slider-container {
+                max-width: 480px;
+            }
+
+            .slide {
+                height: calc(100% * 1.15);
+            }
+        }
+
+        .image-slider {
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            border-radius: 20px;
+            height: 800px; /* Aumentei a altura em 70% (de 400px para 680px) */
+            object-fit: cover; /* Garante que as imagens cubram o espaço */
+        }
+
+        button.prev, button.next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        button.prev {
+            left: 10px;
+        }
+
+        button.next {
+            right: 10px;
+        }
+
+        button:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        .cards-section {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #1a1a2e;
+        }
+
+        .cards-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #00E676;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #004494;
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #00E676;
+        }
+
+        .card p {
+            font-size: 1em;
+            color: white;
+        }
+
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        #dropdown-button {
+            background-color: #00E676;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+
+        #dropdown-button:hover {
+            background-color: #00C853;
+            transform: scale(1.1);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            bottom: 50px;
+            right: 0;
+            background-color: #2a2a40;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown-content.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #00E676;
+        }
+    </style>
+</head>
+<body>
+    <div class="header" id="header">
+        <img src="assets/images/logo.png" alt="Logo Vendedora Sincera" class="logo">
+        <h1>Conquiste confiança e destaque com mais avaliações no Google.</h1>
+        <p>Mais avaliações, mais visibilidade, mais clientes!</p>
+        <a href="https://wa.link/lwiddk" class="whatsapp-button">PRECISO DE AVALIAÇÕES</a>
+    </div>
+
+    <div class="cards-section" id="cards-section">
+        <h2>Benefícios de Mais Avaliações</h2>
+        <div class="cards-container">
+            <div class="card">
+                <img width="50" height="50" src="https://img.icons8.com/ios/50/medal.png" alt="medal" style="color: #00E676;">
+                <h3>Aumente sua Autoridade</h3>
+                <p>Mais avaliações trazem mais autoridade ao seu negócio, aumentando sua reputação e visibilidade para novos clientes.</p>
+            </div>
+            <div class="card">
+                <img width="50" height="50" src="https://img.icons8.com/ios/50/leaderboard.png" alt="leaderboard"/>
+                <h3>Suba de Posição</h3>
+                <p>O algoritmo do Google prioriza a quantidade e qualidade das avaliações. Garanta seu lugar entre os melhores!</p>
+            </div>
+            <div class="card">
+                <img width="50" height="50" src="https://img.icons8.com/ios/50/hearts--v1.png" alt="hearts--v1"/>
+                <h3>Confiança Instantânea</h3>
+                <p>Avaliações positivas geram confiança. Clientes se sentem seguros ao escolher você com base em experiências de outros.</p>
+            </div>
+            <div class="card">
+                <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/invisible.png" alt="invisible"/>
+                <h3>Visibilidade Aumentada</h3>
+                <p>Com mais avaliações, seu negócio se destaca, atraindo mais clientes e aumentando suas vendas.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="packages" id="packages">
+        <h2>Conheça Nossos Pacotes</h2>
+        <div class="package-container">
+            <div class="package-card">
+                <div class="google-icon">G</div>
+                <h3>Pacote 10 Avaliações</h3>
+                <div class="price">R$70,00</div>
+                <ul>
+                    <li>Av Reais e Brasileiras</li>
+                    <li>Comentários Customizados</li>
+                    <li>Pagamento Único</li>
+                    <li>Geolocalizado</li>
+                </ul>
+                <a href="https://wa.link/p9sg1j" class="whatsapp-button">COMPRAR</a>
+            </div>
+            
+            <div class="package-card">
+                <div class="google-icon">G</div>
+                <h3>Pacote 15 Avaliações</h3>
+                <div class="price">R$130,00</div>
+                <ul>
+                    <li>Av Reais e Brasileiras</li>
+                    <li>Comentários Customizados</li>
+                    <li>Pagamento Único</li>
+                    <li>Geolocalizado</li>
+                </ul>
+                <a href="https://wa.link/zyho2b" class="whatsapp-button">COMPRAR</a>
+            </div>
+
+            <div class="package-card">
+                <div class="google-icon">G</div>
+                <h3>Pacote 20 Avaliações</h3>
+                <div class="price">R$350,00</div>
+                <ul>
+                    <li>Av Reais e Brasileiras</li>
+                    <li>Comentários Customizados</li>
+                    <li>Pagamento Único</li>
+                    <li>Geolocalizado</li>
+                </ul>
+                <a href="https://wa.link/irym3k" class="whatsapp-button">COMPRAR</a>
+            </div>
+
+            <div class="package-card">
+                <div class="google-icon">G</div>
+                <h3>Pacote 30 Avaliações</h3>
+                <div class="price">R$550,00</div>
+                <ul>
+                    <li>Av Reais e Brasileiras</li>
+                    <li>Comentários Customizados</li>
+                    <li>Pagamento Único</li>
+                    <li>Geolocalizado</li>
+                </ul>
+                <a href="https://wa.link/wzo87b" class="whatsapp-button">COMPRAR</a>
+            </div>
+            <div class="package-card">
+                <div class="google-icon">G</div>
+                <h3>Pacote 40 Avaliações</h3>
+                <div class="price">R$750,00</div>
+                <ul>
+                    <li>Av Reais e Brasileiras</li>
+                    <li>Comentários Customizados</li>
+                    <li>Pagamento Único</li>
+                    <li>Geolocalizado</li>
+                </ul>
+                <a href="https://wa.link/c0esn2" class="whatsapp-button">COMPRAR</a>
+            </div>
+            <div class="package-card">
+                <div class="google-icon">G</div>
+                <h3>Pacote 50 Avaliações</h3>
+                <div class="price">R$950,00</div>
+                <ul>
+                    <li>Av Reais e Brasileiras</li>
+                    <li>Comentários Customizados</li>
+                    <li>Pagamento Único</li>
+                    <li>Geolocalizado</li>
+                </ul>
+                <a href="https://wa.link/ng2q5x" class="whatsapp-button">COMPRAR</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-slider" id="image-slider">
+        <h2>Avaliações Reais</h2>
+        <div class="slider-container">
+            <div class="slider" id="slider1">
+                <img src="assets/depoiment/depoiment1.jpeg" alt="Imagem 1" class="slide">
+                <img src="assets/depoiment/depoiment2.jpeg" alt="Imagem 2" class="slide">
+                <img src="assets/depoiment/depoiment3.jpeg" alt="Imagem 3" class="slide">
+                <img src="assets/depoiment/depoiment4.jpeg" alt="Imagem 4" class="slide">
+                <img src="assets/depoiment/depoiment5.jpeg" alt="Imagem 5" class="slide">
+                <img src="assets/depoiment/depoiment6.jpeg" alt="Imagem 6" class="slide">
+                <img src="assets/depoiment/depoiment7.jpeg" alt="Imagem 7" class="slide">
+                <img src="assets/depoiment/depoiment8.jpeg" alt="Imagem 8" class="slide">
+                <img src="assets/depoiment/depoiment9.jpeg" alt="Imagem 9" class="slide">
+                <img src="assets/depoiment/depoiment10.jpeg" alt="Imagem 10" class="slide">
+            </div>
+            <button class="prev" onclick="changeSlide(-1, 'slider1')">&#10094;</button>
+            <button class="next" onclick="changeSlide(1, 'slider1')">&#10095;</button>
+        </div>
+    </div>
+
+    <div class="image-slider">
+        <h2>Depoimentos</h2>
+        <div class="slider-container">
+            <div class="slider" id="slider2">
+                <img src="assets/depoiment/depoiment1.jpeg" alt="Depoimento 1" class="slide">
+                <img src="assets/depoiment/depoiment2.jpeg" alt="Depoimento 2" class="slide">
+                <img src="assets/depoiment/depoiment3.jpeg" alt="Depoimento 3" class="slide">
+                <img src="assets/depoiment/depoiment4.jpeg" alt="Depoimento 4" class="slide">
+                <img src="assets/depoiment/depoiment5.jpeg" alt="Depoimento 5" class="slide">
+            </div>
+            <button class="prev" onclick="changeSlide(-1, 'slider2')">&#10094;</button>
+            <button class="next" onclick="changeSlide(1, 'slider2')">&#10095;</button>
+        </div>
+    </div>
+
+    <div class="faq-section" id="faq-section">
+        <div class="faq">
+            <h2>Dúvidas Mais Comuns</h2>
+            <div class="faq-item">
+                <div class="faq-question">Quais são as formas de pagamento disponíveis?</div>
+                <div class="faq-answer">Aceitamos diversas formas de pagamento, incluindo PIX, transferência bancária e cartão de crédito. Todas as transações são realizadas de forma segura e garantida, proporcionando tranquilidade para nossos clientes.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Quando posso esperar as avaliações?</div>
+                <div class="faq-answer">As avaliações começam a ser publicadas em até 24 horas após a confirmação do pagamento. Trabalhamos para garantir que as avaliações sejam distribuídas de maneira natural ao longo dos dias, para que você possa ver resultados consistentes.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">As avaliações podem ser removidas?</div>
+                <div class="faq-answer">Nossas avaliações são geradas por contas reais e ativas, seguindo todas as diretrizes do Google. Isso minimiza o risco de remoção, garantindo que você receba feedback autêntico e duradouro.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Comprar avaliações é seguro?</div>
+                <div class="faq-answer">Sim, nosso serviço é totalmente seguro. Trabalhamos exclusivamente com perfis reais e ativos, respeitando todas as políticas do Google para garantir a integridade do seu negócio.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Vocês oferecem avaliações para outras plataformas?</div>
+                <div class="faq-answer">Atualmente, focamos exclusivamente em avaliações para o Google. Isso nos permite oferecer um serviço de alta qualidade e resultados eficazes para nossos clientes.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">E se eu receber avaliações negativas?</div>
+                <div class="faq-answer">Não trabalhamos com avaliações negativas. Nosso objetivo é ajudar empresas a crescerem por meio de feedback positivo e construtivo, promovendo uma imagem sólida e confiável no mercado.</div>
+            </div>
+        </div>
+        <div class="whatsapp-image">
+            <img src="assets/images/whatsapp-phone.png" alt="WhatsApp">
+            <a href="https://wa.link/lwiddk" class="whatsapp-button">TIRAR DÚVIDAS</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2017-2024 | Todos os Direitos Reservados</p>
+        <p><a href="politics.html">Políticas de Privacidade</a> | <a href="politics.html">Termos de Uso</a></p>
+    </div>
+
+    <div class="floating-button">
+        <button id="dropdown-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+                <path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/>
+            </svg>
+        </button>
+        <div class="dropdown-content" id="dropdown-content">
+            <a href="#header">Início</a>
+            <a href="#cards-section">Benefícios</a>
+            <a href="#packages">Pacotes</a>
+            <a href="#image-slider">Galeria</a>
+            <a href="#faq-section">Dúvidas</a>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const allAnswers = document.querySelectorAll('.faq-answer');
+                const allQuestions = document.querySelectorAll('.faq-question');
+                
+                // Fecha todas as outras respostas
+                allAnswers.forEach(a => {
+                    if (a !== answer) {
+                        a.classList.remove('active');
+                        a.style.maxHeight = '0';
+                    }
+                });
+                
+                // Remove a classe active de todas as outras perguntas
+                allQuestions.forEach(q => {
+                    if (q !== question) {
+                        q.classList.remove('active');
+                    }
+                });
+                
+                // Toggle da resposta atual
+                answer.classList.toggle('active');
+                question.classList.toggle('active');
+                
+                if (answer.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                } else {
+                    answer.style.maxHeight = '0';
+                }
+            });
+        });
+
+        let currentSlide1 = 0;
+        let currentSlide2 = 0;
+        let autoSlideInterval;
+
+        function changeSlide(direction, slider) {
+            const slides = document.querySelectorAll(`#${slider} .slide`);
+            if (slider === 'slider1') {
+                currentSlide1 += direction;
+
+                if (currentSlide1 < 0) {
+                    currentSlide1 = slides.length - 1;
+                } else if (currentSlide1 >= slides.length) {
+                    currentSlide1 = 0;
+                }
+
+                const sliderElement = document.querySelector(`#${slider}`);
+                sliderElement.style.transform = `translateX(-${currentSlide1 * 100}%)`;
+            } else {
+                currentSlide2 += direction;
+
+                if (currentSlide2 < 0) {
+                    currentSlide2 = slides.length - 1;
+                } else if (currentSlide2 >= slides.length) {
+                    currentSlide2 = 0;
+                }
+
+                const sliderElement = document.querySelector(`#${slider}`);
+                sliderElement.style.transform = `translateX(-${currentSlide2 * 100}%)`;
+            }
+        }
+
+        function startAutoSlide(slider) {
+            autoSlideInterval = setInterval(() => {
+                changeSlide(1, slider);
+            }, 3200); // 3.2 segundos
+        }
+
+        // Inicie o auto slide para os sliders
+        startAutoSlide('slider1');
+        startAutoSlide('slider2');
+
+        document.getElementById('dropdown-button').addEventListener('click', function() {
+            const dropdown = document.getElementById('dropdown-content');
+            dropdown.classList.toggle('show');
+        });
+
+        // Adiciona smooth scroll
+        document.querySelectorAll('.dropdown-content a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                document.getElementById('dropdown-content').classList.remove('show'); // Fecha o dropdown após clicar
+            });
+        });
+    </script>
+</body>
+</html>
