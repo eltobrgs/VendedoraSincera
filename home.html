@@ -86,7 +86,7 @@
         }
 
         .packages {
-            background-color: #0056b3;
+            background-color: #1a1a2e;
             padding: 70px 20px;
             text-align: center;
             position: relative;
@@ -104,6 +104,7 @@
         }
 
         .packages h2 {
+            color: #00E676;
             margin-bottom: 50px;
             font-size: 2.5em;
             font-weight: 600;
@@ -117,63 +118,110 @@
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
         }
 
         .package-card {
-            background-color: #1a1a2e;
-            border-radius: 20px;
-            padding: 40px 30px;
-            width: 280px;
+            background-color: #162447;
+            border-radius: 15px;
+            padding: 30px 20px;
+            width: 300px;
             text-align: center;
             transition: all 0.3s ease;
             animation: fadeInUp 1s ease;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.05), transparent);
+            z-index: 0;
         }
 
         .package-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .google-icon {
-            width: 60px;
-            height: 60px;
-            background-color: #ff4444;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 28px;
+            margin: 0 auto 20px;
+            font-size: 24px;
             color: white;
             font-weight: 600;
-            box-shadow: 0 5px 15px rgba(255,68,68,0.3);
+            box-shadow: 0 5px 15px rgba(66, 133, 244, 0.3);
+            position: relative;
+            z-index: 1;
         }
 
         .package-card h3 {
             margin: 15px 0;
-            font-size: 1.3em;
-            font-weight: 600;
+            font-size: 1.6em;
+            font-weight: 700;
+            color: white;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+
+        .package-card h5 {
+            margin: 15px 0;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #00C853;
         }
 
         .package-card .price {
-            font-size: 1.8em;
-            margin: 20px 0;
+            font-size: 2em;
+            margin: 15px 0;
             color: white;
-            font-weight: 600;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
         }
 
         .package-card ul {
             list-style: none;
             margin: 25px 0;
             text-align: left;
+            position: relative;
+            z-index: 1;
+            padding: 0 15px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background-color: #1a1a2e;
         }
 
         .package-card ul li {
             margin: 12px 0;
-            font-size: 0.95em;
+            font-size: 0.85em;
             display: flex;
             align-items: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .package-card p {
+            color: #00E676;
+            font-size: 1.2em;
+            font-weight: 600;
         }
 
         .package-card ul li::before {
@@ -181,7 +229,43 @@
             color: #00E676;
             margin-right: 10px;
             font-weight: bold;
+            font-size: 1.1em;
         }
+
+        .package-card .whatsapp-button {
+            background-color: #00E676;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+            width: 80%;
+        }
+
+        .package-card .whatsapp-button:hover {
+            background-color: #00C853;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,230,118,0.3);
+        }
+
+        .package-card-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #1a1a2e;
+            padding: 10px;
+            border-radius: 10px;
+            border: 4px solid rgba(255, 255, 255, 0.1)  ;
+        }   
 
         .faq-section {
             display: flex;
@@ -351,7 +435,7 @@
             }
 
             .slider-container {
-                max-width: 480px;
+                max-width: 400px;
             }
 
             .slide {
@@ -366,7 +450,7 @@
 
         .slider-container {
             position: relative;
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
             overflow: hidden;
             border-radius: 20px;
@@ -512,6 +596,24 @@
         .dropdown-content a:hover {
             background-color: #00E676;
         }
+
+        .price-card {
+            position: relative;
+            background-color: #00C853; /* Cor de fundo */
+            color: white; /* Cor do texto */
+            padding: 15px 20px; /* Espaçamento interno */
+            border-radius: 10px; /* Bordas arredondadas */
+            margin: 10px 0; /* Margem superior e inferior */
+            font-size: 1.8em; /* Tamanho da fonte */
+            font-weight: bold; /* Negrito */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra */
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%, 0 50%); /* Forma da etiqueta */
+            transition: transform 0.3s ease; /* Transição suave */
+        }
+
+        .price-card:hover {
+            transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
+        }
     </style>
 </head>
 <body>
@@ -553,78 +655,103 @@
         <div class="package-container">
             <div class="package-card">
                 <div class="google-icon">G</div>
-                <h3>Pacote 10 Avaliações</h3>
-                <div class="price">R$70,00</div>
+                <div class="package-card-text">
+                    <p>5 avaliações</p>
+                    <h5>google meu negócio</h5>
+                </div>
+                <h3>Pacote Básico</h3>
+                <div class="price-card">R$70,00</div>
                 <ul>
-                    <li>Av Reais e Brasileiras</li>
-                    <li>Comentários Customizados</li>
-                    <li>Pagamento Único</li>
-                    <li>Geolocalizado</li>
+                    <li>5 ESTRELAS</li>
+                    <li>COMENTÁRIOS PERSONALIZADOS</li>
+                    <li>SIGILO TOTAL NA COMPRA</li>
+                    <li>FINALIZA PEDIDO EM 24H</li>
                 </ul>
                 <a href="https://wa.link/p9sg1j" class="whatsapp-button">COMPRAR</a>
             </div>
             
             <div class="package-card">
                 <div class="google-icon">G</div>
-                <h3>Pacote 15 Avaliações</h3>
-                <div class="price">R$130,00</div>
+                <div class="package-card-text">
+                    <p>10 avaliações</p>
+                    <h5>google meu negócio</h5>
+                </div>
+                <h3>Pacote Intermediário</h3>
+                <div class="price-card">R$250,00</div>
                 <ul>
-                    <li>Av Reais e Brasileiras</li>
-                    <li>Comentários Customizados</li>
-                    <li>Pagamento Único</li>
-                    <li>Geolocalizado</li>
+                    <li>5 ESTRELAS</li>
+                    <li>COMENTÁRIOS PERSONALIZADOS</li>
+                    <li>SIGILO TOTAL NA COMPRA</li>
+                    <li>FINALIZA PEDIDO EM 24H</li>
                 </ul>
                 <a href="https://wa.link/zyho2b" class="whatsapp-button">COMPRAR</a>
             </div>
 
             <div class="package-card">
                 <div class="google-icon">G</div>
-                <h3>Pacote 20 Avaliações</h3>
-                <div class="price">R$350,00</div>
+                <div class="package-card-text">
+                    <p>15 avaliações</p>
+                    <h5>google meu negócio</h5>
+                </div>
+                <h3>Pacote Avançado</h3>
+                <div class="price-card">R$350,00</div>
                 <ul>
-                    <li>Av Reais e Brasileiras</li>
-                    <li>Comentários Customizados</li>
-                    <li>Pagamento Único</li>
-                    <li>Geolocalizado</li>
+                    <li>5 ESTRELAS</li>
+                    <li>COMENTÁRIOS PERSONALIZADOS</li>
+                    <li>SIGILO TOTAL NA COMPRA</li>
+                    <li>FINALIZA PEDIDO EM 24H</li>
                 </ul>
                 <a href="https://wa.link/irym3k" class="whatsapp-button">COMPRAR</a>
             </div>
 
             <div class="package-card">
                 <div class="google-icon">G</div>
-                <h3>Pacote 30 Avaliações</h3>
-                <div class="price">R$550,00</div>
+                <div class="package-card-text">
+                    <p>20 avaliações</p>
+                    <h5>google meu negócio</h5>
+                </div>
+                <h3>Pacote Premium</h3>
+                <div class="price-card">R$550,00</div>
                 <ul>
-                    <li>Av Reais e Brasileiras</li>
-                    <li>Comentários Customizados</li>
-                    <li>Pagamento Único</li>
-                    <li>Geolocalizado</li>
+                    <li>5 ESTRELAS</li>
+                    <li>COMENTÁRIOS PERSONALIZADOS</li>
+                    <li>SIGILO TOTAL NA COMPRA</li>
+                    <li>FINALIZA PEDIDO EM 24H</li>
                 </ul>
                 <a href="https://wa.link/wzo87b" class="whatsapp-button">COMPRAR</a>
             </div>
+            
             <div class="package-card">
                 <div class="google-icon">G</div>
-                <h3>Pacote 40 Avaliações</h3>
-                <div class="price">R$750,00</div>
+                <div class="package-card-text">
+                    <p>30 avaliações</p>
+                    <h5>google meu negócio</h5>
+                </div>
+                <h3>Pacote Elite</h3>
+                <div class="price-card">R$750,00</div>
                 <ul>
-                    <li>Av Reais e Brasileiras</li>
-                    <li>Comentários Customizados</li>
-                    <li>Pagamento Único</li>
-                    <li>Geolocalizado</li>
+                    <li>5 ESTRELAS</li>
+                    <li>COMENTÁRIOS PERSONALIZADOS</li>
+                    <li>SIGILO TOTAL NA COMPRA</li>
+                    <li>FINALIZA PEDIDO EM 24H</li>
                 </ul>
                 <a href="https://wa.link/c0esn2" class="whatsapp-button">COMPRAR</a>
             </div>
+            
             <div class="package-card">
                 <div class="google-icon">G</div>
-                <h3>Pacote 50 Avaliações</h3>
-                <div class="price">R$950,00</div>
+                <div class="package-card-text">
+                    <p>Quantas avaliações precisar</p>
+                    <h5>google meu negócio</h5>
+                </div>
+                <h3>Pacote Master</h3>
+                <div class="price-card">Preço por avaliação</div>
                 <ul>
-                    <li>Av Reais e Brasileiras</li>
-                    <li>Comentários Customizados</li>
-                    <li>Pagamento Único</li>
-                    <li>Geolocalizado</li>
+                    <li>5 ESTRELAS</li>
+                    <li>COMENTÁRIOS PERSONALIZADOS</li>
+                    <li>SIGILO TOTAL NA COMPRA</li>
                 </ul>
-                <a href="https://wa.link/ng2q5x" class="whatsapp-button">COMPRAR</a>
+                <a href="https://wa.link/mf6hee" class="whatsapp-button">COMPRAR</a>
             </div>
         </div>
     </div>
