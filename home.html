@@ -3,10 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vendedora Sincera - Avaliações</title>
+    <title>Vendedora Sincera -Avaliações</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="assets/images/logo.png" type="image/png">
     <style>
+        @keyframes blinkBlue {
+            0% { color: white; }
+            50% { color: #0066ff; }
+            100% { color: white; }
+        }
+        
+        .audio-testimonial {
+            background: linear-gradient(135deg, #162447, #1a1a2e);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 1s ease;
+        }
+
+        .audio-testimonial h3 {
+            color: #00E676;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .audio-player {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .audio-player::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 230, 118, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        .audio-player audio {
+            width: 100%;
+            height: 40px;
+            outline: none;
+        }
+
+        .audio-player audio::-webkit-media-controls-panel {
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 10px;
+        }
+
+        .audio-player audio::-webkit-media-controls-play-button,
+        .audio-player audio::-webkit-media-controls-mute-button {
+            background-color: #00E676;
+            border-radius: 50%;
+            transition: transform 0.2s ease;
+        }
+
+        .audio-player audio::-webkit-media-controls-play-button:hover,
+        .audio-player audio::-webkit-media-controls-mute-button:hover {
+            transform: scale(1.1);
+        }
+
+        .audio-player audio::-webkit-media-controls-current-time-display,
+        .audio-player audio::-webkit-media-controls-time-remaining-display {
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .audio-player audio::-webkit-media-controls-timeline {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            height: 4px;
+        }
+
+        .audio-player audio::-webkit-media-controls-volume-slider {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            height: 4px;
+        }
+
+        .blink-blue {
+            animation: blinkBlue 3s ease-in-out infinite;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -27,6 +117,80 @@
             overflow: hidden;
         }
 
+        .comparison-reviews {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .review-comparison-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 15px;
+            width: 300px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            display: flex;
+            gap: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .review-comparison-card.negative {
+            align-self: flex-start;
+            margin-left: 10%;
+            border-left: 4px solid #EA4335;
+        }
+
+        .review-comparison-card.positive {
+            align-self: flex-end;
+            margin-right: 10%;
+            border-left: 4px solid #34A853;
+        }
+
+        .review-comparison-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .review-comparison-content {
+            flex: 1;
+        }
+
+        .review-comparison-title {
+            font-family: Roboto, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 4px;
+        }
+
+        .review-comparison-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .review-comparison-stars {
+            color: #e7711b;
+            font-size: 14px;
+        }
+
+        .review-comparison-count {
+            color: #70757a;
+            font-size: 13px;
+        }
+
+        .review-comparison-text {
+            color: #5f6368;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
         .header::before {
             content: '';
             position: absolute;
@@ -39,9 +203,7 @@
         }
 
         .logo {
-            max-width: 500px;
-            margin-bottom: 5px;
-            position: relative;
+            max-width: 500px;            position: relative;
             z-index: 1;
             animation: fadeInDown 1s ease;
         }
@@ -184,6 +346,25 @@
             font-size: 1.2em;
             font-weight: 700;
             color: #00C853;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Estilo para o texto do Google Maps */
+        .google-maps-text span {
+            transition: color 0.5s ease;
+        }
+
+        .package-card h5::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300C853'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
         }
 
         .package-card .price {
@@ -220,7 +401,7 @@
         }
         .package-card p {
             color: #00E676;
-            font-size: 1.2em;
+            font-size: 1.8em;
             font-weight: 600;
         }
 
@@ -436,15 +617,11 @@
 
             .logo {
                 max-width: 360px;
-                
             }
 
             .slider-container {
-                max-width: 400px;
-            }
-
-            .slide {
-                height: calc(100% * 1.15);
+                max-width: 90%;
+                height: 450px;
             }
         }
 
@@ -455,7 +632,9 @@
 
         .slider-container {
             position: relative;
+            width: 100%;
             max-width: 450px;
+            height: 580px;
             margin: 0 auto;
             overflow: hidden;
             border-radius: 20px;
@@ -464,14 +643,17 @@
 
         .slider {
             display: flex;
+            width: 100%;
+            height: 100%;
             transition: transform 0.5s ease;
         }
 
         .slide {
             min-width: 100%;
+            width: 100%;
+            height: 100%;
             border-radius: 20px;
-            height: 580px; /* Aumentei a altura em 70% (de 400px para 680px) */
-            object-fit: cover; /* Garante que as imagens cubram o espaço */
+            object-fit: cover;
         }
 
         button.prev, button.next {
@@ -546,41 +728,86 @@
 
         .floating-button {
             position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 10px;
+            background: linear-gradient(135deg, #00E676, #00C853);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 230, 118, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .floating-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 230, 118, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .floating-button button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            outline: none;
+            border-radius: 12px;
+        }
+        
+        .floating-button button:hover {
+            transform: rotate(90deg);
+        }
+
+        .whatsapp-float {
+            position: fixed;
             bottom: 20px;
             right: 20px;
-            z-index: 1000;
-            transition: transform 0.3s ease;
-        }
-
-        #dropdown-button {
-            background-color: #00E676;
+            background-color: #25D366;
             color: white;
-            border: none;
             border-radius: 50%;
-            padding: 15px;
-            cursor: pointer;
-            font-size: 18px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            position: relative;
+            text-decoration: none;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
 
-        #dropdown-button:hover {
-            background-color: #00C853;
+        .whatsapp-float:hover {
             transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+        }
+        
+        .floating-button button svg {
+            width: 24px;
+            height: 24px;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
         }
 
         .dropdown-content {
             display: none;
             position: absolute;
-            bottom: 50px;
-            right: 0;
+            top: 50px;
+            left: 0;
             background-color: #2a2a40;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             z-index: 1000;
             opacity: 0;
-            transform: translateY(10px);
+            transform: translateY(-10px);
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
@@ -623,29 +850,62 @@
 </head>
 <body>
     <div class="header" id="header">
-        <img src="assets/images/logo.png" alt="Logo Vendedora Sincera" class="logo">
-        <h1>Conquiste confiança e destaque com mais avaliações no Google.</h1>
-        <p>Mais avaliações, mais visibilidade, mais clientes!</p>
+        <p style="font-size: 0.8em">Empresa com CNPJ ativo!!</p>
+
+        <img src="assets/images/logo.png" alt="Logo" class="logo">
+        <div class="audio-testimonial">
+            <h3>Veja o que nossos clientes estão falando de nós</h3>
+            <div class="audio-player">
+                <audio controls>
+                    <source src="assets/audios/audio_review1.mp3" type="audio/mp3">
+                    Seu navegador não suporta o elemento de áudio.
+                </audio>
+            </div>
+        </div>
+        
+        <div class="comparison-reviews">
+            <div class="review-comparison-card negative">
+                <img src="https://img.icons8.com/ios/100/000000/sad.png" alt="Sad business" class="review-comparison-image">
+                <div class="review-comparison-content">
+                    <div class="review-comparison-title">Bliss Burger Steak Beer</div>
+                    <div class="review-comparison-rating">
+                        <div class="review-comparison-stars">★★☆☆☆</div>
+                        <span class="review-comparison-count">(103) · R$ 20-40</span>
+                    </div>
+                    <div class="review-comparison-text">Negócio sem avaliações positivas tem menos visibilidade e confiança</div>
+                </div>
+            </div>
+            
+            <div class="review-comparison-card positive">
+                <img src="https://img.icons8.com/ios/100/000000/happy.png" alt="Happy business" class="review-comparison-image">
+                <div class="review-comparison-content">
+                    <div class="review-comparison-title">Bliss Burger Steak Beer</div>
+                    <div class="review-comparison-rating">
+                        <div class="review-comparison-stars">★★★★★</div>
+                        <span class="review-comparison-count">(512) · R$ 20-40</span>
+                    </div>
+                    <div class="review-comparison-text">Com nossas avaliações, seu negócio ganha mais credibilidade e clientes</div>
+                </div>
+            </div>
+        </div>
+        <h1>Conquiste confiança e destaque com mais <span class="blink-blue">avaliações</span> no Google.</h1>
+        <p>Mais <span class="blink-blue">avaliações</span>, mais visibilidade, mais clientes!</p>
         <a href="https://wa.link/lwiddk" class="whatsapp-button">PRECISO DE AVALIAÇÕES</a>
+
     </div>
 
     <div class="cards-section" id="cards-section">
-        <h2>Benefícios de Mais Avaliações</h2>
+        <h2>Benefícios de Mais <span class="blink-blue">Avaliações</span></h2>
         <div class="cards-container">
-            <div class="card">
-                <img width="50" height="50" src="https://img.icons8.com/ios/50/medal.png" alt="medal" style="color: #00E676;">
-                <h3>Aumente sua Autoridade</h3>
-                <p>Mais avaliações trazem mais autoridade ao seu negócio, aumentando sua reputação e visibilidade para novos clientes.</p>
-            </div>
             <div class="card">
                 <img width="50" height="50" src="https://img.icons8.com/ios/50/leaderboard.png" alt="leaderboard"/>
                 <h3>Suba de Posição</h3>
-                <p>O algoritmo do Google prioriza a quantidade e qualidade das avaliações. Garanta seu lugar entre os melhores!</p>
+                <p>O algoritmo do Google prioriza a quantidade e qualidade das <span class="blink-blue">avaliações</span>. Garanta seu lugar entre os melhores!</p>
             </div>
             <div class="card">
                 <img width="50" height="50" src="https://img.icons8.com/ios/50/hearts--v1.png" alt="hearts--v1"/>
                 <h3>Confiança Instantânea</h3>
-                <p>Avaliações positivas geram confiança. Clientes se sentem seguros ao escolher você com base em experiências de outros.</p>
+                <p><span class="blink-blue">Avaliações</span> positivas geram confiança. Clientes se sentem seguros ao escolher você com base em experiências de outros.</p>
             </div>
             <div class="card">
                 <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/invisible.png" alt="invisible"/>
@@ -661,10 +921,33 @@
             <div class="package-card">
                 <div class="google-icon">G</div>
                 <div class="package-card-text">
-                    <p>5 avaliações</p>
-                    <h5>google meu negócio</h5>
+                    <p>5 avaliações </p>
+                    <h4><span class="blink-blue">(pague só depois de receber)</span></h4>
+                    <h5 class="google-maps-text"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>&nbsp;<span>M</span><span>a</span><span>p</span><span>s</span></h5>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const googleColors = ['#4285F4', '#EA4335', '#FBBC05', '#4285F4', '#34A853', '#EA4335', '#4285F4', '#EA4335', '#FBBC05', '#34A853'];
+                const texts = document.querySelectorAll('.google-maps-text');
+                
+                texts.forEach(text => {
+                    const spans = text.querySelectorAll('span');
+                    let currentIndex = 0;
+                    
+                    function animateColors() {
+                        spans.forEach((span, i) => {
+                            const colorIndex = (currentIndex + i) % googleColors.length;
+                            span.style.color = googleColors[colorIndex];
+                        });
+                        currentIndex = (currentIndex + 1) % googleColors.length;
+                    }
+                    
+                    setInterval(animateColors, 1000);
+                    animateColors(); // Initial color set
+                });
+            });
+        </script>
                 </div>
-                <h3>Pacote Básico</h3>
+                <h3>Pacote <span class="blink-blue">Básico</span></h3>
                 <div class="price-card">R$80,00</div>
                 <ul>
                     <li>5 ESTRELAS</li>
@@ -678,10 +961,34 @@
             <div class="package-card">
                 <div class="google-icon">G</div>
                 <div class="package-card-text">
-                    <p>10 avaliações</p>
-                    <h5>google meu negócio</h5>
+                    <p>10 avaliações </p>
+                    <h4><span class="blink-blue">(pague só depois de receber)</span></h4>
+
+                    <h5 class="google-maps-text"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>&nbsp;<span>M</span><span>a</span><span>p</span><span>s</span></h5>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const googleColors = ['#4285F4', '#EA4335', '#FBBC05', '#4285F4', '#34A853', '#EA4335', '#4285F4', '#EA4335', '#FBBC05', '#34A853'];
+                const texts = document.querySelectorAll('.google-maps-text');
+                
+                texts.forEach(text => {
+                    const spans = text.querySelectorAll('span');
+                    let currentIndex = 0;
+                    
+                    function animateColors() {
+                        spans.forEach((span, i) => {
+                            const colorIndex = (currentIndex + i) % googleColors.length;
+                            span.style.color = googleColors[colorIndex];
+                        });
+                        currentIndex = (currentIndex + 1) % googleColors.length;
+                    }
+                    
+                    setInterval(animateColors, 1000);
+                    animateColors(); // Initial color set
+                });
+            });
+        </script>
                 </div>
-                <h3>Pacote Intermediário</h3>
+                <h3>Pacote <span class="blink-blue">Intermediário</span></h3>
                 <div class="price-card">R$140,00</div>
                 <ul>
                     <li>5 ESTRELAS</li>
@@ -695,10 +1002,33 @@
             <div class="package-card">
                 <div class="google-icon">G</div>
                 <div class="package-card-text">
-                    <p>15 avaliações</p>
-                    <h5>google meu negócio</h5>
+                    <p>15 avaliações </p>
+                    <h4><span class="blink-blue">(pague só depois de receber)</span></h4>
+                    <h5 class="google-maps-text"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>&nbsp;<span>M</span><span>a</span><span>p</span><span>s</span></h5>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const googleColors = ['#4285F4', '#EA4335', '#FBBC05', '#4285F4', '#34A853', '#EA4335', '#4285F4', '#EA4335', '#FBBC05', '#34A853'];
+                const texts = document.querySelectorAll('.google-maps-text');
+                
+                texts.forEach(text => {
+                    const spans = text.querySelectorAll('span');
+                    let currentIndex = 0;
+                    
+                    function animateColors() {
+                        spans.forEach((span, i) => {
+                            const colorIndex = (currentIndex + i) % googleColors.length;
+                            span.style.color = googleColors[colorIndex];
+                        });
+                        currentIndex = (currentIndex + 1) % googleColors.length;
+                    }
+                    
+                    setInterval(animateColors, 1000);
+                    animateColors(); // Initial color set
+                });
+            });
+        </script>
                 </div>
-                <h3>Pacote Avançado</h3>
+                <h3>Pacote <span class="blink-blue">Avançado</span></h3>
                 <div class="price-card">R$220,00</div>
                 <ul>
                     <li>5 ESTRELAS</li>
@@ -712,8 +1042,32 @@
             <div class="package-card">
                 <div class="google-icon">G</div>
                 <div class="package-card-text">
-                    <p>20 avaliações</p>
-                    <h5>google meu negócio</h5>
+                    <p>20 avaliações </p>
+                    <h4><span class="blink-blue">(pague só depois de receber)</span></h4>
+
+                    <h5 class="google-maps-text"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>&nbsp;<span>M</span><span>a</span><span>p</span><span>s</span></h5>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const googleColors = ['#4285F4', '#EA4335', '#FBBC05', '#4285F4', '#34A853', '#EA4335', '#4285F4', '#EA4335', '#FBBC05', '#34A853'];
+                const texts = document.querySelectorAll('.google-maps-text');
+                
+                texts.forEach(text => {
+                    const spans = text.querySelectorAll('span');
+                    let currentIndex = 0;
+                    
+                    function animateColors() {
+                        spans.forEach((span, i) => {
+                            const colorIndex = (currentIndex + i) % googleColors.length;
+                            span.style.color = googleColors[colorIndex];
+                        });
+                        currentIndex = (currentIndex + 1) % googleColors.length;
+                    }
+                    
+                    setInterval(animateColors, 1000);
+                    animateColors(); // Initial color set
+                });
+            });
+        </script>
                 </div>
                 <h3>Pacote Premium</h3>
                 <div class="price-card">R$340,00</div>
@@ -729,8 +1083,32 @@
             <div class="package-card">
                 <div class="google-icon">G</div>
                 <div class="package-card-text">
-                    <p>30 avaliações</p>
-                    <h5>google meu negócio</h5>
+                    <p>30 avaliações </p>
+                    <h4><span class="blink-blue">(pague só depois de receber)</span></h4>
+
+                    <h5 class="google-maps-text"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>&nbsp;<span>M</span><span>a</span><span>p</span><span>s</span></h5>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const googleColors = ['#4285F4', '#EA4335', '#FBBC05', '#4285F4', '#34A853', '#EA4335', '#4285F4', '#EA4335', '#FBBC05', '#34A853'];
+                const texts = document.querySelectorAll('.google-maps-text');
+                
+                texts.forEach(text => {
+                    const spans = text.querySelectorAll('span');
+                    let currentIndex = 0;
+                    
+                    function animateColors() {
+                        spans.forEach((span, i) => {
+                            const colorIndex = (currentIndex + i) % googleColors.length;
+                            span.style.color = googleColors[colorIndex];
+                        });
+                        currentIndex = (currentIndex + 1) % googleColors.length;
+                    }
+                    
+                    setInterval(animateColors, 1000);
+                    animateColors(); // Initial color set
+                });
+            });
+        </script>
                 </div>
                 <h3>Pacote Elite</h3>
                 <div class="price-card">R$420,00</div>
@@ -746,8 +1124,32 @@
             <div class="package-card">
                 <div class="google-icon">G</div>
                 <div class="package-card-text">
-                    <p>Quantas avaliações precisar</p>
-                    <h5>google meu negócio</h5>
+                    <p>Quantas avaliações precisar </p>
+                    <h4><span class="blink-blue">(pague só depois de receber)</span></h4>
+
+                    <h5 class="google-maps-text"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>&nbsp;<span>M</span><span>a</span><span>p</span><span>s</span></h5>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const googleColors = ['#4285F4', '#EA4335', '#FBBC05', '#4285F4', '#34A853', '#EA4335', '#4285F4', '#EA4335', '#FBBC05', '#34A853'];
+                const texts = document.querySelectorAll('.google-maps-text');
+                
+                texts.forEach(text => {
+                    const spans = text.querySelectorAll('span');
+                    let currentIndex = 0;
+                    
+                    function animateColors() {
+                        spans.forEach((span, i) => {
+                            const colorIndex = (currentIndex + i) % googleColors.length;
+                            span.style.color = googleColors[colorIndex];
+                        });
+                        currentIndex = (currentIndex + 1) % googleColors.length;
+                    }
+                    
+                    setInterval(animateColors, 1000);
+                    animateColors(); // Initial color set
+                });
+            });
+        </script>
                 </div>
                 <h3>Pacote Master</h3>
                 <div class="price-card">Preço por avaliação</div>
@@ -762,7 +1164,7 @@
     </div>
 
     <div class="image-slider" id="image-slider">
-        <h2>Avaliações Reais</h2>
+        <h2><span class="blink-blue">Avaliações</span> Reais</h2>
         <div class="slider-container">
             <div class="slider" id="slider1">
                 <img src="assets/depoiment/antes1.jpeg" alt="Imagem 1" class="slide">
@@ -781,7 +1183,6 @@
             <div class="slider" id="slider2">
                 <img src="assets/depoiment/depoimento1.jpeg" alt="Depoimento 1" class="slide">
                 <img src="assets/depoiment/depoimento2.jpeg" alt="Depoimento 2" class="slide">
-                <
             </div>
             <button class="prev" onclick="changeSlide(-1, 'slider2')">&#10094;</button>
             <button class="next" onclick="changeSlide(1, 'slider2')">&#10095;</button>
@@ -825,6 +1226,7 @@
     <div class="footer">
         <p>© 2017-2024 | Todos os Direitos Reservados</p>
         <p><a href="politics.html">Políticas de Privacidade</a> | <a href="politics.html">Termos de Uso</a></p>
+        <p>Empresa com CNPJ ativo!!</p>
     </div>
 
     <div class="floating-button">
@@ -841,6 +1243,12 @@
             <a href="#faq-section">Dúvidas</a>
         </div>
     </div>
+
+    <a href="https://wa.link/lwiddk" class="whatsapp-float" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"/>
+        </svg>
+    </a>
 
     <script>
         document.querySelectorAll('.faq-question').forEach(question => {
@@ -878,9 +1286,17 @@
 
         let currentSlide1 = 0;
         let currentSlide2 = 0;
-        let autoSlideInterval;
+        let autoSlideInterval1;
+        let autoSlideInterval2;
 
         function changeSlide(direction, slider) {
+            // Clear the auto-slide interval for the specific slider when user clicks navigation buttons
+            if (slider === 'slider1') {
+                clearInterval(autoSlideInterval1);
+            } else {
+                clearInterval(autoSlideInterval2);
+            }
+
             const slides = document.querySelectorAll(`#${slider} .slide`);
             if (slider === 'slider1') {
                 currentSlide1 += direction;
@@ -893,6 +1309,9 @@
 
                 const sliderElement = document.querySelector(`#${slider}`);
                 sliderElement.style.transform = `translateX(-${currentSlide1 * 100}%)`;
+                
+                // Restart auto slide after manual navigation
+                startAutoSlide('slider1');
             } else {
                 currentSlide2 += direction;
 
@@ -904,18 +1323,33 @@
 
                 const sliderElement = document.querySelector(`#${slider}`);
                 sliderElement.style.transform = `translateX(-${currentSlide2 * 100}%)`;
+                
+                // Restart auto slide after manual navigation
+                startAutoSlide('slider2');
             }
         }
 
         function startAutoSlide(slider) {
-            autoSlideInterval = setInterval(() => {
-                changeSlide(1, slider);
-            }, 3200); // 3.2 segundos
+            // Clear any existing interval before setting a new one
+            if (slider === 'slider1') {
+                clearInterval(autoSlideInterval1);
+                autoSlideInterval1 = setInterval(() => {
+                    changeSlide(1, slider);
+                }, 3000); // 3 segundos
+            } else {
+                clearInterval(autoSlideInterval2);
+                autoSlideInterval2 = setInterval(() => {
+                    changeSlide(1, slider);
+                }, 3000); // 3 segundos
+            }
         }
 
-        // Inicie o auto slide para os sliders
-        startAutoSlide('slider1');
-        startAutoSlide('slider2');
+        // Initialize sliders on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicie o auto slide para os sliders
+            startAutoSlide('slider1');
+            startAutoSlide('slider2');
+        });
 
         document.getElementById('dropdown-button').addEventListener('click', function() {
             const dropdown = document.getElementById('dropdown-content');
